@@ -120,7 +120,7 @@ class MinimaxPlayer(IsolationPlayer):
             raise SearchTimeout()
 
         if len(game.get_legal_moves()) == 0 or depth == 0:
-            return self.score(game, game.inactive_player)
+            return self.score(game, self)
 
         minscore = float("inf")
         for m in game.get_legal_moves():

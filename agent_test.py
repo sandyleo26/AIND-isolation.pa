@@ -21,8 +21,8 @@ class IsolationTest(unittest.TestCase):
 
     def setUp(self):
         reload(game_agent)
-        self.player1 = "Player1"
-        self.player2 = "Player2"
+        self.player1 = MinimaxPlayer(search_depth=1, score_fn=open_move_score)
+        self.player2 = MinimaxPlayer(search_depth=1, score_fn=open_move_score)
         self.game = isolation.Board(self.player1, self.player2, 9, 9)
 
     def test1(self):
@@ -30,7 +30,7 @@ class IsolationTest(unittest.TestCase):
         print(self.game.to_string())
         player = MinimaxPlayer(search_depth=1, score_fn=open_move_score)
         time_left = lambda : 100
-        self.assertEqual((5, 5), player.get_move(self.game, time_left))
+        self.assertEqual((5, 5), self.game.active_player.get_move(self.game, time_left))
 
     def test2(self):
         self.game._board_state = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 1, 0, 0, 0, 0, 1, 0, 1, 1, 1, 0, 0, 0, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 29, 38]
